@@ -1,8 +1,10 @@
+from email.headerregistry import UnstructuredHeader
+from CuentaBancaria import CuentaBancaria
 from Usuario import Usuario
 
 #Creando usuarios
-gaby=Usuario("Gaby","gabymaria100@gmail.com")
-cilo=Usuario("Cilo","cilorojas24@mail.com")
+gaby=Usuario("Gaby","gabymaria100@gmail.com") #por defecto se creó una cuenta en soles
+cilo=Usuario("Cilo","cilorojas24@mail.com") #por defecto se creó una cuenta en soles
 
 #Haciendo depósitos y mostrando balance
 cuenta_ingreso="cuenta_ingreso"
@@ -12,9 +14,9 @@ cilo.hacer_deposito(1000,cuenta_ingreso).hacer_retiro(20,cuenta_ingreso).mostrar
 #Haciendo transferencia a otra cuenta
 gaby.transfer_dinero(cilo,20,cuenta_ingreso,cuenta_ingreso)
 
-#Creando una nueva cuenta a un usuario existente
-gaby.crear_nueva_cuenta("cuenta_ahorros")
-cilo.crear_nueva_cuenta("cuenta_abc")
+#Creando una nueva cuenta a usuarios existentes
+gaby.crear_nueva_cuenta("cuenta_ahorros","dolares")
+cilo.crear_nueva_cuenta("cuenta_abc","euros")
 
 #Creando un tercer usuario
 martha=Usuario("Martha", "martha@gmail.com") #por defecto se creó una cuenta en soles
@@ -25,8 +27,5 @@ martha.cuentas["cuenta_ingreso"].cambiarMoneda("dólares")
 # Mostrando el cambio de moneda en la cuenta de Martha
 martha.cuentas["cuenta_ingreso"].mostrar_info_cuenta()
 
-# Mostrando balance de Martha
-martha.mostrar_balance_usuario()
-
-# Mostrando qué cuentas tiene Gaby
-gaby.mostrar_nombre_cuentas()
+#Mostrando las cuentas existentes
+Usuario.mostrar_cuentasExistentes_por_usuario()

@@ -29,10 +29,14 @@ class CuentaBancaria:
             return self
     
     def cambiarMoneda(self,nuevaMoneda):
+        print(f"Se cambió la moneda de {self.moneda} a {nuevaMoneda}")
         self.moneda=nuevaMoneda
+        return self
+        
 
     @classmethod
     def info_cuentas_global(cls):
+        print("Las cuentas registradas son: ")
         for i in range(0,len(CuentaBancaria.relacion_cuentas)):
             CuentaBancaria.mostrar_info_cuenta(CuentaBancaria.relacion_cuentas[i])
 

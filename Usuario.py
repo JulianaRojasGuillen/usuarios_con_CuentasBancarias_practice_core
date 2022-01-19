@@ -1,6 +1,9 @@
 from CuentaBancaria import CuentaBancaria
 
 class Usuario:
+
+    relacion_usuarios=[]
+
     #constructor
     def __init__(self, nombre, correo):
         self.nombre=nombre
@@ -8,6 +11,7 @@ class Usuario:
         self.cuentas={
             "cuenta_ingreso": CuentaBancaria(),
         }
+        Usuario.relacion_usuarios.append(self)
         
     #métodos
     def hacer_deposito(self,monto,cuenta):
@@ -19,7 +23,6 @@ class Usuario:
         return self
     
     def mostrar_balance_usuario(self):
-        print("-------")
         print("Mostrando balance de cuentas:")
         for clave, valor in self.cuentas.items():
             print(clave)
@@ -41,6 +44,16 @@ class Usuario:
         print(f"Las cuentas de {self.nombre} son:")
         for clave in self.cuentas.keys():
             print(clave)
+
+    @classmethod
+    def mostrar_cuentasExistentes_por_usuario(cls):
+        print("------------------------------------------------------------")
+        print(" A CONTINUACIÓN SE MUESTRA LAS CUENTAS POR USUARIO EXISTENTES")
+        for i in range (0,len(Usuario.relacion_usuarios)):
+            print("-----")
+            print(f" Usuario: {Usuario.relacion_usuarios[i].nombre}")
+            Usuario.relacion_usuarios[i].mostrar_balance_usuario()
+            
 
 
     ##Otra forma de crear balance_usuario usando transformación a lista
